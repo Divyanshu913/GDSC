@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block title %}Users Favorites{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>Users saved favorite posts</h1>
+    <p class="lead text-muted">Here you can view your favorites</p>
+</div>
+
+    {% for n in new %}
+        <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+        {% if n.favorite == True %}
+            <a class="mr-2" href="#">{{ n.author }}</a>
+            <small class="text-muted">{{ n.date_posted|date:"F d, Y" }}</small>
+    </div>
+            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ n.title }}</a></h2>
+            <p class="article-content">{{ n.content }}</p>
+  </div>
+        
+        {% endif %}
+        </article> 
+    {% endfor %}
+{% endblock content %}
